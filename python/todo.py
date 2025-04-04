@@ -1,18 +1,26 @@
 import argparse
 import os
 
-TASK_FILE = ".tasks.txt"
+TASK_FILE = "todo_list.txt"
 
 def add_task(task):
-    """Function: add_task
+        
     
-    Input - a task to add to the list
-    Return - nothing
-    """
-
 def list_tasks():
-    return
+    with open(TASK_FILE, "r") as file:
+        tasks = file.readlines()
+        counter = 1
+        output_string = ""
 
+        for i, task in enumerate(tasks): 
+            if i == len(tasks) - 1: 
+                output_string = output_string + str(counter) + ". " + task.strip() 
+            else:
+                output_string = output_string + str(counter) + ". " + task 
+            counter = counter + 1
+    return output_string
+    file.close()
+            
 
 def remove_task(index):
     return
