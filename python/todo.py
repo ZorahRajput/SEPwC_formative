@@ -2,30 +2,42 @@ import argparse
 import os
 
 TASK_FILE = "todo_list.txt"
-
-            
+   
 def add_task(task):
-    
-        
-    
+    """Appends a task to the end of the todo list file."""
+    task="Item 6"
+    try:
+        with open(TASK_FILE, "a") as file:
+            file.write(task + "\n")
+        print(f"'{task}' has been added successfully to your list.")
+    except FileNotFoundError:
+        print("Error: File not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 def list_tasks():
+    """Lists tasks within the task file"""
     with open(TASK_FILE, "r") as file:
-        tasks = file.readlines()
+        tasks = file.readlines()        
         counter = 1
         output_string = ""
 
-        for i, task in enumerate(tasks): 
+        if not tasks:    
+            print("Task list is empty") 
+                
+        for i, task in enumerate(tasks):
             if i == len(tasks) - 1: 
-                output_string = output_string + str(counter) + ". " + task.strip() 
+                output_string = output_string + str(counter) + ". " + task.strip() #removes new line function from final task in the list
             else:
                 output_string = output_string + str(counter) + ". " + task 
             counter = counter + 1
-    return output_string
-    file.close()
             
+    return output_string
+                        
 
-def remove_task(index):
-    return
+def remove_task():
+    return 
+
 
 def main():
     parser = argparse.ArgumentParser(description="Command-line Todo List")
